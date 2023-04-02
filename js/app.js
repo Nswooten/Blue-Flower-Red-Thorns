@@ -1,7 +1,7 @@
 console.log("sanity check")
 /*-------------------------------- Constants --------------------------------*/
 const snake = {
-  head: 1,
+  head: 18,
   body: [],
 }
 
@@ -16,7 +16,7 @@ const apple = {
 
 
 let boardSqsArray = []
-
+let keyToNumber = null
 
 
 
@@ -37,24 +37,23 @@ keyboard.addEventListener("keydown", moveHead)
 boardSqs.forEach(function(sqr, index){
   const num = null
   // sqr = num
-  boardSqsArray.push(num)
+  
   
 })
-console.log(boardSqsArray)
+// console.log(boardSqsArray)
 
-console.log(boardSqs)
+// console.log(boardSqs)
 
 // console.log(boardSqsValue())
 
 function init(){
  
-  boardSqs[18].textContent = "x"
-  console.log(parseInt((boardSqs[18].id.replace("sq", ""))) + 3) //now i need to convert back into an index after changing the input
+  // boardSqs[18].textContent = "x"
+  // console.log(parseInt((boardSqs[18].id.replace("sq", ""))) + 3) //now i need to convert back into an index after changing the input
   
 }
 
-function updateBoard(){
-}
+
 function updateSnake(){
   
 
@@ -70,30 +69,55 @@ function updateSnake(){
 // }
 
 
-// function initialBoard(){
-//   boardSqs.forEach(function(sqr, index){
-//   sqr = null
-//   console.log(boardSqs[index])
+function initialBoard(){
+  boardSqs.forEach(function(sqr, index){
+  sqr = null
+  console.log(boardSqs[index])
   
-// })
-// }
+})
+}
 // initialBoard()
 
 function updateBoard(){
-  console.log(boardSqsArray)
   
-  boardSqsArray.forEach(function(sqr, index){
-    if(sqr === null){
-      boardSqs[index].textContent = "o"
-    }else if (sqr === 1){
-      boardSqs[index].textContent = "x"
-    }else if (sqr === 2){
-      boardSqs[index].textContent = "a"
-    }
-  })
+  boardSqs.forEach(function(sqr, index){
+  if(index === snake.head){
+    sqr.textContent = "x"
+  }else{
+    sqr.textContent = ""
+  }
+  
+})
+}
+function render(){
+  moveHead()
+  updateBoard()
+
 }
 
-console.log(updateBoard())
+
+
+
+
+
+
+
+
+// function updateBoard(){
+//   console.log(boardSqsArray)
+  
+//   boardSqsArray.forEach(function(sqr, index){
+//     if(sqr === null){
+//       boardSqs[index].textContent = "o"
+//     }else if (sqr === 1){
+//       boardSqs[index].textContent = "x"
+//     }else if (sqr === 2){
+//       boardSqs[index].textContent = "a"
+//     }
+//   })
+// }
+
+// console.log(updateBoard())
 
 // board.x1.splice(0, 1, snake.head)
 // let timer = setInterval(function(){
@@ -104,43 +128,51 @@ console.log(updateBoard())
 
 
 
-let keyToNumber = 0
+
 function moveHead(event){
   let userKey = event.key.toLowerCase()
   
   // console.log(keyToNumber)
   if(userKey === "w"){
     // console.log("-5")
-    keyToNumber = -6
+    //keyToNumber = -6
+    snake.head = snake.head - 6
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) - 6 
     //need to take in boardsqs, convert that to an int, add this value and convert back to boardsqs index -see line 51
   //need to shift the boardSqs[] -6
   }else if(userKey === "s"){
     // console.log("+5")
-    keyToNumber = 6
+    // keyToNumber = 6
+    snake.head = snake.head + 6
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 6 
     //need to shift the boardSqs[] +6
   }else if(userKey === "d"){
     // console.log("+1")
-    keyToNumber = 1
+    // keyToNumber = 1
+    snake.head = snake.head + 1
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 1
     //need to shift the boardSqs[] +1
   }else if(userKey === "a"){
     // console.log("-1")
-    keyToNumber = -1
+    // keyToNumber = -1
+    snake.head = snake.head - 1
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) - 1 
     //need to shift the boardSqs[] -1
-  } return console.log(keyToNumber)
+  } 
+  updateBoard()
+  
+  //console.log(boardSqs[((boardSqs[index].id.replace("sq", ""))) - keyToNumber])
 }
-console.log(keyToNumber)
+// boardSqs[keyToNumber].textContent = "x"
+// console.log(keyToNumber)
 // console.log(moveHead())
 
 
 // function keyPress(event){
 //   console.log(event.key)
 // }
-console.log(boardSqsArray.push(snake.head))
-console.log(snake.head)
+// console.log(boardSqsArray.push(snake.head))
+// console.log(snake.head)
 
 // // moveHead()
 init()
