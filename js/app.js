@@ -99,15 +99,15 @@ updateBoard()
 function moveHead(event){
   let userKey = event.key.toLowerCase()
   let keyToNumber = 0
-  // console.log(event.key)
+  // console.log(keyToNumber)
   if(userKey === "w"){
-    // console.log("-5")
-    keyToNumber = -5
+    console.log("-5")
+    keyToNumber = -6
     
   //need to shift the boardSqs[] -5
   }else if(userKey === "s"){
     // console.log("+5")
-    keyToNumber = 5
+    keyToNumber = 6
     
     //need to shift the boardSqs[] +5
   }else if(userKey === "d"){
@@ -116,16 +116,17 @@ function moveHead(event){
     
     //need to shift the boardSqs[] +1
   }else if(userKey === "a"){
+    // console.log("-1")
     keyToNumber = -1
     
     //need to shift the boardSqs[] -1
-  } return keyToNumber
+  } return console.log(keyToNumber)
 }
-// console.log(moveHead())
+console.log(moveHead)
 
 
-// function keyPress(event){
-//   console.log(event.key)
-// }
+function keyPress(event){
+  console.log(event.key)
+}
 // // moveHead()
 init()
