@@ -114,14 +114,36 @@ function updateBoard(){
 // }
 
 // console.log(updateBoard())
-function start(){
-  timer = setInterval(function(userKey){
-  snake.head++
+function start(direction){
+  if(direction === -6)
+  timer = setInterval(function(){
+  snake.head -= 6
   console.log(snake.head)
   updateBoard()
-  }, 5000)
+  console.log(timer)
+  }, 1000)
+  if(direction === 6)
+  timer = setInterval(function(){
+  snake.head += 6
+  console.log(snake.head)
+  updateBoard()
+  console.log(timer)
+  }, 1000)
+  if(direction === -1)
+  timer = setInterval(function(){
+  snake.head -= 1
+  console.log(snake.head)
+  updateBoard()
+  console.log(timer)
+  }, 1000)
+  if(direction === 1)
+  timer = setInterval(function(){
+  snake.head += 1
+  console.log(snake.head)
+  updateBoard()
+  console.log(timer)
+  }, 1000)
 }
-start()
 //made the x move accross the screen by pop() last value storing it as a variable and then unshifting that variable while running update board after time interval
 
 
@@ -134,31 +156,39 @@ function moveHead(event){
   if(userKey === "w"){
     // console.log("-5")
     //keyToNumber = -6
+    clearInterval(timer)
     snake.head = snake.head - 6
+    start(-6)
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) - 6 
     //need to take in boardsqs, convert that to an int, add this value and convert back to boardsqs index -see line 51
   //need to shift the boardSqs[] -6
   }else if(userKey === "s"){
     // console.log("+5")
     // keyToNumber = 6
+    clearInterval(timer)
     snake.head = snake.head + 6
+    start(6)
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 6 
     //need to shift the boardSqs[] +6
   }else if(userKey === "d"){
     // console.log("+1")
     // keyToNumber = 1
+    clearInterval(timer)
     snake.head = snake.head + 1
+    start(1)
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 1
     //need to shift the boardSqs[] +1
   }else if(userKey === "a"){
     // console.log("-1")
     // keyToNumber = -1
+    clearInterval(timer)
     snake.head = snake.head - 1
+    start(-1)
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) - 1 
     //need to shift the boardSqs[] -1
   } 
   updateBoard()
-  
+  start(userKey)
   //console.log(boardSqs[((boardSqs[index].id.replace("sq", ""))) - keyToNumber])
 }
 
