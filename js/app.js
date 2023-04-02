@@ -14,7 +14,7 @@ const apple = {
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-
+let timer
 let boardSqsArray = []
 let keyToNumber = null
 
@@ -46,13 +46,13 @@ boardSqs.forEach(function(sqr, index){
 
 // console.log(boardSqsValue())
 
-function init(){
- 
-  // boardSqs[18].textContent = "x"
-  // console.log(parseInt((boardSqs[18].id.replace("sq", ""))) + 3) //now i need to convert back into an index after changing the input
+function init(event){
+  boardSqs[snake.head].textContent = "x"
   
 }
-
+// boardSqs[18].textContent = "x"
+//   console.log(parseInt((boardSqs[18].id.replace("sq", ""))) + 3) //now i need to convert back into an index after changing the input
+  
 
 function updateSnake(){
   
@@ -69,14 +69,14 @@ function updateSnake(){
 // }
 
 
-function initialBoard(){
-  boardSqs.forEach(function(sqr, index){
-  sqr = null
-  console.log(boardSqs[index])
+// function initialBoard(){
+//   boardSqs.forEach(function(sqr, index){
+//   sqr = null
+//   console.log(boardSqs[index])
   
-})
-}
-// initialBoard()
+// })
+// }
+// // initialBoard()
 
 function updateBoard(){
   
@@ -89,11 +89,7 @@ function updateBoard(){
   
 })
 }
-function render(){
-  moveHead()
-  updateBoard()
 
-}
 
 
 
@@ -118,12 +114,14 @@ function render(){
 // }
 
 // console.log(updateBoard())
-
-// board.x1.splice(0, 1, snake.head)
-// let timer = setInterval(function(){
-//   moveHead()
-//   updateBoard()
-// }, 300)
+function start(){
+  timer = setInterval(function(userKey){
+  snake.head++
+  console.log(snake.head)
+  updateBoard()
+  }, 5000)
+}
+start()
 //made the x move accross the screen by pop() last value storing it as a variable and then unshifting that variable while running update board after time interval
 
 
@@ -163,16 +161,5 @@ function moveHead(event){
   
   //console.log(boardSqs[((boardSqs[index].id.replace("sq", ""))) - keyToNumber])
 }
-// boardSqs[keyToNumber].textContent = "x"
-// console.log(keyToNumber)
-// console.log(moveHead())
 
-
-// function keyPress(event){
-//   console.log(event.key)
-// }
-// console.log(boardSqsArray.push(snake.head))
-// console.log(snake.head)
-
-// // moveHead()
 init()
