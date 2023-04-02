@@ -1,9 +1,9 @@
 console.log("sanity check")
 /*-------------------------------- Constants --------------------------------*/
-// const snake = {
-//   head: boardSqs[18],
-//   body: [],
-// }
+const snake = {
+  head: 1,
+  body: [],
+}
 
 const apple = {
   location: 2,
@@ -15,7 +15,7 @@ const apple = {
 /*---------------------------- Variables (state) ----------------------------*/
 
 
-
+let boardSqsArray = []
 
 
 
@@ -34,14 +34,15 @@ keyboard.addEventListener("keydown", moveHead)
 /*-------------------------------- Functions --------------------------------*/
 
 //create a function that takes the index and assigns that index number as a value to that square
-const boardSqsValue = boardSqs.forEach(function(sqr, index){
-  const num = parseInt(index)
-  sqr = num
-  return sqr
+boardSqs.forEach(function(sqr, index){
+  const num = null
+  // sqr = num
+  boardSqsArray.push(num)
   
 })
+console.log(boardSqsArray)
+
 console.log(boardSqs)
-console.log(boardSqsValue)
 
 // console.log(boardSqsValue())
 
@@ -78,19 +79,19 @@ function updateSnake(){
 // }
 // initialBoard()
 
-// function updateBoard(){
-//   console.log(boardSqs)
+function updateBoard(){
+  console.log(boardSqsArray)
   
-//   boardSqs.forEach(function(sqr, index){
-//     if(sqr === null){
-//       boardSqs[index].textContent = "x"
-//     }else if (sqr === 1){
-//       boardSqs[index].textContent = "o"
-//     }else if (sqr === 2){
-//       boardSqs[index].textContent = "a"
-//     }
-//   })
-// }
+  boardSqsArray.forEach(function(sqr, index){
+    if(sqr === null){
+      boardSqs[index].textContent = "o"
+    }else if (sqr === 1){
+      boardSqs[index].textContent = "x"
+    }else if (sqr === 2){
+      boardSqs[index].textContent = "a"
+    }
+  })
+}
 
 console.log(updateBoard())
 
@@ -103,38 +104,43 @@ console.log(updateBoard())
 
 
 
-
+let keyToNumber = 0
 function moveHead(event){
   let userKey = event.key.toLowerCase()
-  let keyToNumber = 0
+  
   // console.log(keyToNumber)
   if(userKey === "w"){
     // console.log("-5")
     keyToNumber = -6
-    
-  //need to shift the boardSqs[] -5
+    //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) - 6 
+    //need to take in boardsqs, convert that to an int, add this value and convert back to boardsqs index -see line 51
+  //need to shift the boardSqs[] -6
   }else if(userKey === "s"){
     // console.log("+5")
     keyToNumber = 6
-    
-    //need to shift the boardSqs[] +5
+    //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 6 
+    //need to shift the boardSqs[] +6
   }else if(userKey === "d"){
     // console.log("+1")
     keyToNumber = 1
-    
+    //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 1
     //need to shift the boardSqs[] +1
   }else if(userKey === "a"){
     // console.log("-1")
     keyToNumber = -1
-    
+    //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) - 1 
     //need to shift the boardSqs[] -1
   } return console.log(keyToNumber)
 }
+console.log(keyToNumber)
 // console.log(moveHead())
 
 
-function keyPress(event){
-  console.log(event.key)
-}
+// function keyPress(event){
+//   console.log(event.key)
+// }
+console.log(boardSqsArray.push(snake.head))
+console.log(snake.head)
+
 // // moveHead()
 init()
