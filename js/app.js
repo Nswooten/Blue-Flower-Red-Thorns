@@ -119,6 +119,7 @@ function start(direction){
   timer = setInterval(function(){
   snake.head -= 6
   console.log(snake.head)
+  checkForWall()
   updateBoard()
   console.log(timer)
   }, 1000)
@@ -126,6 +127,7 @@ function start(direction){
   timer = setInterval(function(){
   snake.head += 6
   console.log(snake.head)
+  checkForWall()
   updateBoard()
   console.log(timer)
   }, 1000)
@@ -133,6 +135,7 @@ function start(direction){
   timer = setInterval(function(){
   snake.head -= 1
   console.log(snake.head)
+  checkForWall()
   updateBoard()
   console.log(timer)
   }, 1000)
@@ -140,14 +143,12 @@ function start(direction){
   timer = setInterval(function(){
   snake.head += 1
   console.log(snake.head)
+  checkForWall()
   updateBoard()
   console.log(timer)
   }, 1000)
+  
 }
-//made the x move accross the screen by pop() last value storing it as a variable and then unshifting that variable while running update board after time interval
-
-
-
 
 function moveHead(event){
   let userKey = event.key.toLowerCase()
@@ -160,7 +161,7 @@ function moveHead(event){
     snake.head = snake.head - 6
     start(-6)
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) - 6 
-    //need to take in boardsqs, convert that to an int, add this value and convert back to boardsqs index -see line 51
+    
   //need to shift the boardSqs[] -6
   }else if(userKey === "s"){
     // console.log("+5")
@@ -184,12 +185,24 @@ function moveHead(event){
     clearInterval(timer)
     snake.head = snake.head - 1
     start(-1)
-    //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) - 1 
-    //need to shift the boardSqs[] -1
+    
   } 
   updateBoard()
   start(userKey)
   //console.log(boardSqs[((boardSqs[index].id.replace("sq", ""))) - keyToNumber])
 }
-
+function checkForWall(){
+  if(snake.head >= 35 || snake.head <= 0){
+    clearInterval(timer)
+  }
+}
+//0  1  2  3  4  5
+//6  7  8  9  10 11
+//12 13 14 15 16 17
+//18 19 20 21 22 23
+//24 25 26 27 28 29
+//30 31 32 33 34 35
+//maybe includes to 
 init()
+
+//made the x move accross the screen by pop() last value storing it as a variable and then unshifting that variable while running update board after time interval
