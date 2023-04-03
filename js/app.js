@@ -9,8 +9,18 @@ const apple = {
   location: 2,
 }
 
+const walls = {
+rWall: [5, 11, 17, 23, 29, 35],
+lWall: [0, 6, 12, 18, 24, 30],
+bWall: [30, 31, 32, 33, 34, 35],
+tWall: [0, 1, 2, 3, 4, 5],
+}
+console.log(walls.rWall)
 
-
+// rWall = [5, 11, 17, 23, 29, 35]
+// lWall = [0, 6, 12, 18, 24, 30]
+// bWall = [30, 31, 32, 33, 34, 35]
+// tWall = [0, 1, 2, 3, 4, 5]
 
 /*---------------------------- Variables (state) ----------------------------*/
 
@@ -196,13 +206,14 @@ function checkForWall(){
     clearInterval(timer)
   }
 }
+
 //0  1  2  3  4  5
 //6  7  8  9  10 11
 //12 13 14 15 16 17
 //18 19 20 21 22 23
 //24 25 26 27 28 29
 //30 31 32 33 34 35
-//maybe includes to 
+// //maybe includes
 init()
 
 //made the x move accross the screen by pop() last value storing it as a variable and then unshifting that variable while running update board after time interval
