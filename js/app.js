@@ -41,35 +41,26 @@ let lose = false
 
 const keyboard = document.querySelector(".keyboard")
 
+const userMsg = document.getElementById("userMsg")
 
 const boardSqs = document.querySelectorAll(".sqr") 
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-keyboard.addEventListener("keydown", moveHead)
-
+// keyboard.addEventListener("keydown", moveHead)
+document.addEventListener("keydown", (event)=>{
+  moveHead(event.key)
+})
 /*-------------------------------- Functions --------------------------------*/
 
-//create a function that takes the index and assigns that index number as a value to that square
-boardSqs.forEach(function(sqr, index){
-  const num = null
-  // sqr = num
-  
-  
-})
-// console.log(boardSqsArray)
-
-// console.log(boardSqs)
-
-// console.log(boardSqsValue())
 
 function init(event){
-  boardSqs[snake.head].textContent = "x"
-  
+  boardSqs[snake.head].textContent = "🦄"
+  boardSqs[apple.location].textContent = "🌷"
+  snake.body = []
+
 }
-// boardSqs[18].textContent = "x"
-//   console.log(parseInt((boardSqs[18].id.replace("sq", ""))) + 3) //now i need to convert back into an index after changing the input
-  
+
 
 function updateSnake(){
   
@@ -96,47 +87,27 @@ function updateSnake(){
 // // initialBoard()
 
 function updateBoard(){
-  
   boardSqs.forEach(function(sqr, index){
   if(index === snake.head){
-    sqr.textContent = "x"
+    sqr.textContent = "🦄"
+  }else if(index === apple.location){
+    sqr.textContent = "🌷"
+  }else if(snake.body.includes(index)){
+    sqr.textContent = "o"
   }else{
-    sqr.textContent = ""
+  sqr.textContent = ""
   }
-  
 })
 }
 
-
-
-
-
-
-
-
-
-
-// function updateBoard(){
-//   console.log(boardSqsArray)
-  
-//   boardSqsArray.forEach(function(sqr, index){
-//     if(sqr === null){
-//       boardSqs[index].textContent = "o"
-//     }else if (sqr === 1){
-//       boardSqs[index].textContent = "x"
-//     }else if (sqr === 2){
-//       boardSqs[index].textContent = "a"
-//     }
-//   })
-// }
-
-// console.log(updateBoard())
 function start(direction){
   if(direction === -6)
   timer = setInterval(function(){
   snake.head -= 6
   console.log(snake.head)
+  updateApple()
   checkForWall(-6)
+  dealWithSnakeBody()
   updateBoard()
   console.log(timer)
   }, 300)
@@ -144,7 +115,9 @@ function start(direction){
   timer = setInterval(function(){
   snake.head += 6
   console.log(snake.head)
+  updateApple()
   checkForWall(6)
+  dealWithSnakeBody()
   updateBoard()
   console.log(timer)
   }, 300)
@@ -152,7 +125,9 @@ function start(direction){
   timer = setInterval(function(){
   snake.head -= 1
   console.log(snake.head)
+  updateApple()
   checkForWall(-1)
+  dealWithSnakeBody()  
   updateBoard()
   console.log(timer)
   }, 300)
@@ -160,42 +135,31 @@ function start(direction){
   timer = setInterval(function(){
   snake.head += 1
   console.log(snake.head)
+  updateApple()
   checkForWall(1)
+  dealWithSnakeBody()
   updateBoard()
   console.log(timer)
   }, 300)
   
 }
 
-function moveHead(event){
-  let userKey = event.key.toLowerCase()
-  
-  // console.log(keyToNumber)
-  if(userKey === "w"){
-    // console.log("-5")
-    //keyToNumber = -6
+function moveHead(key){
+  if(key === "w"){
     clearInterval(timer)
     // snake.head = snake.head - 6//if i remove this it will fix the ability to move around at your own speed
     start(-6)
-    //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) - 6 
-    
-  //need to shift the boardSqs[] -6
-  }else if(userKey === "s"){
-    // console.log("+5")
-    // keyToNumber = 6
+  }else if(key === "s"){
     clearInterval(timer)
     // snake.head = snake.head + 6
     start(6)
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 6 
     //need to shift the boardSqs[] +6
-  }else if(userKey === "d"){
-    // console.log("+1")
-    // keyToNumber = 1
+  }else if(key === "d"){
     clearInterval(timer)
     // snake.head = snake.head + 1
     start(1)
-  }else if(userKey === "a"){
-   
+  }else if(key === "a"){
     clearInterval(timer)
     // snake.head = snake.head - 1
     start(-1)
@@ -208,22 +172,48 @@ function moveHead(event){
 function checkForWall(direction){
   if(walls.bWall.includes(snake.head) && direction === 6){
     clearInterval(timer)
+    lose = true
   }else if(walls.rWall.includes(snake.head) && direction === 1){
     clearInterval(timer)
+    lose = true
   }else if(walls.tWall.includes(snake.head) && direction === -6){
     clearInterval(timer)
+    lose = true
   }else if(walls.lWall.includes(snake.head) && direction === -1){
     clearInterval(timer)
+    lose = true
+  }
+  checkForLoss()
+}
+function checkForLoss(){
+  if (lose === true){
+    userMsg.textContent = "You lose"
   }
 }
 
-console.log(walls.lWall)
+function updateApple(){
+  if(snake.head === apple.location){
+    snake.body.push(apple.location)
+    console.log(snake.body)
+    apple.location = Math.floor(Math.random() * 35 + 1)
+    console.log(apple.location)
+    
+  }
+  
+  
+  //if snake.head === apple.loction - update text content, generate new random apple location(this location cant be on snake head or snake body), push that location to body array, 
 
-// walls.some(function(){
-//   if (walls.bWall.includes(snake.head))
-// })
-// console.log(walls.bWall.some(snake.head))
-// walls.bWall.some(snake.head)
+}
+
+function dealWithSnakeBody(){
+  snake.body.unshift(snake.head)
+  snake.body.pop()
+  console.log(snake.body)
+  
+}
+
+
+
 //0  1  2  3  4  5
 //6  7  8  9  10 11
 //12 13 14 15 16 17
@@ -233,4 +223,7 @@ console.log(walls.lWall)
 // //maybe includes
 init()
 
-//made the x move accross the screen by pop() last value storing it as a variable and then unshifting that variable while running update board after time interval
+
+
+//every tick unshift the value of  snake.head  to body array and pop body array
+//everytime the snakes head moves take the last position and unshift that value to snakebody array and pop the snake body array
