@@ -15,19 +15,26 @@ lWall: [0, 6, 12, 18, 24, 30],
 bWall: [30, 31, 32, 33, 34, 35],
 tWall: [0, 1, 2, 3, 4, 5],
 }
-console.log(walls.rWall)
+
 
 // rWall = [5, 11, 17, 23, 29, 35]
 // lWall = [0, 6, 12, 18, 24, 30]
 // bWall = [30, 31, 32, 33, 34, 35]
 // tWall = [0, 1, 2, 3, 4, 5]
+//0  1  2  3  4  5
+//6  7  8  9  10 11
+//12 13 14 15 16 17
+//18 19 20 21 22 23
+//24 25 26 27 28 29
+//30 31 32 33 34 35
 
 /*---------------------------- Variables (state) ----------------------------*/
 
 let timer
 let boardSqsArray = []
 let keyToNumber = null
-
+let win = true
+let lose = false
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -129,34 +136,34 @@ function start(direction){
   timer = setInterval(function(){
   snake.head -= 6
   console.log(snake.head)
-  checkForWall()
+  checkForWall(-6)
   updateBoard()
   console.log(timer)
-  }, 1000)
+  }, 300)
   if(direction === 6)
   timer = setInterval(function(){
   snake.head += 6
   console.log(snake.head)
-  checkForWall()
+  checkForWall(6)
   updateBoard()
   console.log(timer)
-  }, 1000)
+  }, 300)
   if(direction === -1)
   timer = setInterval(function(){
   snake.head -= 1
   console.log(snake.head)
-  checkForWall()
+  checkForWall(-1)
   updateBoard()
   console.log(timer)
-  }, 1000)
+  }, 300)
   if(direction === 1)
   timer = setInterval(function(){
   snake.head += 1
   console.log(snake.head)
-  checkForWall()
+  checkForWall(1)
   updateBoard()
   console.log(timer)
-  }, 1000)
+  }, 300)
   
 }
 
@@ -168,7 +175,7 @@ function moveHead(event){
     // console.log("-5")
     //keyToNumber = -6
     clearInterval(timer)
-    snake.head = snake.head - 6
+    // snake.head = snake.head - 6//if i remove this it will fix the ability to move around at your own speed
     start(-6)
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) - 6 
     
@@ -177,7 +184,7 @@ function moveHead(event){
     // console.log("+5")
     // keyToNumber = 6
     clearInterval(timer)
-    snake.head = snake.head + 6
+    // snake.head = snake.head + 6
     start(6)
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 6 
     //need to shift the boardSqs[] +6
@@ -185,28 +192,38 @@ function moveHead(event){
     // console.log("+1")
     // keyToNumber = 1
     clearInterval(timer)
-    snake.head = snake.head + 1
+    // snake.head = snake.head + 1
     start(1)
-    //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 1
-    //need to shift the boardSqs[] +1
   }else if(userKey === "a"){
-    // console.log("-1")
-    // keyToNumber = -1
+   
     clearInterval(timer)
-    snake.head = snake.head - 1
+    // snake.head = snake.head - 1
     start(-1)
     
   } 
   updateBoard()
-  start(userKey)
+  start()
   //console.log(boardSqs[((boardSqs[index].id.replace("sq", ""))) - keyToNumber])
 }
-function checkForWall(){
-  if(snake.head >= 35 || snake.head <= 0){
+function checkForWall(direction){
+  if(walls.bWall.includes(snake.head) && direction === 6){
+    clearInterval(timer)
+  }else if(walls.rWall.includes(snake.head) && direction === 1){
+    clearInterval(timer)
+  }else if(walls.tWall.includes(snake.head) && direction === -6){
+    clearInterval(timer)
+  }else if(walls.lWall.includes(snake.head) && direction === -1){
     clearInterval(timer)
   }
 }
 
+console.log(walls.lWall)
+
+// walls.some(function(){
+//   if (walls.bWall.includes(snake.head))
+// })
+// console.log(walls.bWall.some(snake.head))
+// walls.bWall.some(snake.head)
 //0  1  2  3  4  5
 //6  7  8  9  10 11
 //12 13 14 15 16 17
