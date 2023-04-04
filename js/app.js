@@ -58,7 +58,7 @@ function init(){
   updateBoard()
   checkForLoss()
 }
-
+init()
 
 function updateSnake(){
   
@@ -158,6 +158,7 @@ function moveHead(key){
   } 
   updateApple()
   updateBoard()
+  checkForLoss()
 }
 function checkForWall(direction){
   if(walls.bWall.includes(snake.head - 6) && direction === 6){
@@ -180,6 +181,7 @@ function checkForBody(){
     clearInterval(timer)
     lose = true
   }
+  checkForLoss()
 }
 function checkForLoss(){
   if (lose === true){
@@ -202,4 +204,4 @@ function dealWithSnakeBody(direction){
   snake.body.pop()  
 }
 
-init()
+
