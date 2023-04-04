@@ -6,7 +6,7 @@ const snake = {
 }
 
 const apple = {
-  location: 2,
+  location: 12,
 }
 
 const walls = {
@@ -104,62 +104,67 @@ function start(direction){
   if(direction === -6)
   timer = setInterval(function(){
   snake.head -= 6
-  console.log(snake.head)
+  // console.log(snake.head)
   updateApple()
   checkForWall(-6)
-  dealWithSnakeBody()
+  dealWithSnakeBody(-6)
+  checkForBody()
   updateBoard()
-  console.log(timer)
+  // console.log(timer)
   }, 300)
   if(direction === 6)
   timer = setInterval(function(){
   snake.head += 6
-  console.log(snake.head)
+  // console.log(snake.head)
   updateApple()
   checkForWall(6)
-  dealWithSnakeBody()
+  dealWithSnakeBody(6)
+  checkForBody()
   updateBoard()
-  console.log(timer)
+  // console.log(timer)
   }, 300)
   if(direction === -1)
   timer = setInterval(function(){
   snake.head -= 1
-  console.log(snake.head)
+  // console.log(snake.head)
   updateApple()
   checkForWall(-1)
-  dealWithSnakeBody()  
+  dealWithSnakeBody(-1)
+  checkForBody()  
   updateBoard()
-  console.log(timer)
+  // console.log(timer)
   }, 300)
   if(direction === 1)
   timer = setInterval(function(){
   snake.head += 1
-  console.log(snake.head)
+  // console.log(snake.head)
   updateApple()
   checkForWall(1)
-  dealWithSnakeBody()
+  dealWithSnakeBody(1)
+  checkForBody()
   updateBoard()
-  console.log(timer)
+  // console.log(timer)
   }, 300)
   
 }
 
 function moveHead(key){
-  if(key === "w"){
+  // console.log(key)
+  if(key.toLowerCase() === "w"){
     clearInterval(timer)
     // snake.head = snake.head - 6//if i remove this it will fix the ability to move around at your own speed
     start(-6)
-  }else if(key === "s"){
+  }else if(key.toLowerCase() === "s"){
     clearInterval(timer)
     // snake.head = snake.head + 6
     start(6)
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 6 
     //need to shift the boardSqs[] +6
-  }else if(key === "d"){
+  }else if(key.toLowerCase() === "d"){
     clearInterval(timer)
     // snake.head = snake.head + 1
     start(1)
-  }else if(key === "a"){
+  }else if(key.toLowerCase() === "a"){
     clearInterval(timer)
     // snake.head = snake.head - 1
     start(-1)
@@ -185,6 +190,12 @@ function checkForWall(direction){
   }
   checkForLoss()
 }
+function checkForBody(){
+  if(snake.body.includes(snake.head)){
+    clearInterval(timer)
+    lose = true
+  }
+}
 function checkForLoss(){
   if (lose === true){
     userMsg.textContent = "You lose"
@@ -194,21 +205,15 @@ function checkForLoss(){
 function updateApple(){
   if(snake.head === apple.location){
     snake.body.push(apple.location)
-    console.log(snake.body)
     apple.location = Math.floor(Math.random() * 35 + 1)
-    console.log(apple.location)
-    
+    //remember to address the apple spawn issue
   }
-  
-  
-  //if snake.head === apple.loction - update text content, generate new random apple location(this location cant be on snake head or snake body), push that location to body array, 
-
 }
 
-function dealWithSnakeBody(){
-  snake.body.unshift(snake.head)
+function dealWithSnakeBody(direction){
+  snake.body.unshift(snake.head - direction)
   snake.body.pop()
-  console.log(snake.body)
+  // console.log(snake.body)
   
 }
 
