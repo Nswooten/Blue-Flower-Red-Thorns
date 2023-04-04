@@ -35,6 +35,7 @@ let boardSqsArray = []
 let keyToNumber = null
 let win = true
 let lose = false
+let currentDirection = null
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -150,26 +151,34 @@ function start(direction){
 
 function moveHead(key){
   // console.log(key)
-  if(key.toLowerCase() === "w"){
+  
+  if(key.toLowerCase() === "w" && currentDirection !== "s" ){
     clearInterval(timer)
+    currentDirection = "w"
+    console.log(currentDirection)
     // snake.head = snake.head - 6//if i remove this it will fix the ability to move around at your own speed
     start(-6)
-  }else if(key.toLowerCase() === "s"){
+  }else if(key.toLowerCase() === "s" && currentDirection !== "w" ){
     clearInterval(timer)
+    currentDirection = "s"
     // snake.head = snake.head + 6
     start(6)
     //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 6 
     //need to shift the boardSqs[] +6
-  }else if(key.toLowerCase() === "d"){
+  }else if(key.toLowerCase() === "d" && currentDirection !== "a"){
     clearInterval(timer)
+    currentDirection = "d"
     // snake.head = snake.head + 1
     start(1)
-  }else if(key.toLowerCase() === "a"){
+  }else if(key.toLowerCase() === "a" && currentDirection !== "d"){
     clearInterval(timer)
+    currentDirection = "a"
     // snake.head = snake.head - 1
     start(-1)
     
   } 
+  console.log(currentDirection)
+  
   updateBoard()
   start()
   //console.log(boardSqs[((boardSqs[index].id.replace("sq", ""))) - keyToNumber])
