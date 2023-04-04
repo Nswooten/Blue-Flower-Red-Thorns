@@ -16,18 +16,6 @@ bWall: [30, 31, 32, 33, 34, 35],
 tWall: [0, 1, 2, 3, 4, 5],
 }
 
-
-// rWall = [5, 11, 17, 23, 29, 35]
-// lWall = [0, 6, 12, 18, 24, 30]
-// bWall = [30, 31, 32, 33, 34, 35]
-// tWall = [0, 1, 2, 3, 4, 5]
-//0  1  2  3  4  5
-//6  7  8  9  10 11
-//12 13 14 15 16 17
-//18 19 20 21 22 23
-//24 25 26 27 28 29
-//30 31 32 33 34 35
-
 /*---------------------------- Variables (state) ----------------------------*/
 
 let timer
@@ -46,20 +34,28 @@ const userMsg = document.getElementById("userMsg")
 
 const boardSqs = document.querySelectorAll(".sqr") 
 
+const resetBtnEl = document.getElementById("btn")
+
+
 /*----------------------------- Event Listeners -----------------------------*/
 
 // keyboard.addEventListener("keydown", moveHead)
 document.addEventListener("keydown", (event)=>{
   moveHead(event.key)
 })
+
+resetBtnEl.addEventListener("click", init)
+
 /*-------------------------------- Functions --------------------------------*/
 
 
-function init(event){
-  boardSqs[snake.head].textContent = "🦄"
-  boardSqs[apple.location].textContent = "🌷"
+function init(){
+  snake.head = 20
+  apple.location = 9
   snake.body = []
-
+  lose = false
+  updateBoard()
+  checkForLoss()
 }
 
 
@@ -67,25 +63,6 @@ function updateSnake(){
   
 
 }
-
-// board = {
-//   x1: [null, snake.head, null, null, null],
-//   x2: [null, null, null, null, null],
-//   x3: [null, null, null, null, null],
-//   x4: [null, null, null, null, null],
-//   x5: [null, null, null, null, null],
-//   x6: [null, null, null, null, null],
-// }
-
-
-// function initialBoard(){
-//   boardSqs.forEach(function(sqr, index){
-//   sqr = null
-//   console.log(boardSqs[index])
-  
-// })
-// }
-// // initialBoard()
 
 function updateBoard(){
   boardSqs.forEach(function(sqr, index){
@@ -105,53 +82,43 @@ function start(direction){
   if(direction === -6)
   timer = setInterval(function(){
   snake.head -= 6
-  // console.log(snake.head)
   updateApple()
   checkForWall(-6)
   dealWithSnakeBody(-6)
   checkForBody()
   updateBoard()
-  // console.log(timer)
   }, 300)
   if(direction === 6)
   timer = setInterval(function(){
   snake.head += 6
-  // console.log(snake.head)
   updateApple()
   checkForWall(6)
   dealWithSnakeBody(6)
   checkForBody()
   updateBoard()
-  // console.log(timer)
   }, 300)
   if(direction === -1)
   timer = setInterval(function(){
   snake.head -= 1
-  // console.log(snake.head)
   updateApple()
   checkForWall(-1)
   dealWithSnakeBody(-1)
   checkForBody()  
   updateBoard()
-  // console.log(timer)
   }, 300)
   if(direction === 1)
   timer = setInterval(function(){
   snake.head += 1
-  // console.log(snake.head)
   updateApple()
   checkForWall(1)
   dealWithSnakeBody(1)
   checkForBody()
   updateBoard()
-  // console.log(timer)
   }, 300)
   
 }
 
-function moveHead(key){
-  // console.log(key)
-  
+function moveHead(key){  
   if(key.toLowerCase() === "w" && currentDirection !== "s" ){
     clearInterval(timer)
     currentDirection = "w"
@@ -178,10 +145,8 @@ function moveHead(key){
     
   } 
   console.log(currentDirection)
-  
   updateBoard()
   start()
-  //console.log(boardSqs[((boardSqs[index].id.replace("sq", ""))) - keyToNumber])
 }
 function checkForWall(direction){
   if(walls.bWall.includes(snake.head) && direction === 6){
@@ -207,7 +172,9 @@ function checkForBody(){
 }
 function checkForLoss(){
   if (lose === true){
-    userMsg.textContent = "You lose"
+    userMsg.innerHTML = "Game Over. <br> To play again, click 'Reset' "
+  }else{
+    userMsg.textContent = "Press any of the 'WASD' keys to begin"
   }
 }
 
@@ -221,23 +188,7 @@ function updateApple(){
 
 function dealWithSnakeBody(direction){
   snake.body.unshift(snake.head - direction)
-  snake.body.pop()
-  // console.log(snake.body)
-  
+  snake.body.pop()  
 }
 
-
-
-//0  1  2  3  4  5
-//6  7  8  9  10 11
-//12 13 14 15 16 17
-//18 19 20 21 22 23
-//24 25 26 27 28 29
-//30 31 32 33 34 35
-// //maybe includes
 init()
-
-
-
-//every tick unshift the value of  snake.head  to body array and pop body array
-//everytime the snakes head moves take the last position and unshift that value to snakebody array and pop the snake body array
