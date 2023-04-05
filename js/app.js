@@ -62,7 +62,7 @@ function creatSqrs(){
 creatSqrs()
 boardSqs = document.querySelectorAll(".sqr") 
 function init(){
-
+  clearInterval(timer)
   snake.head = 65
   apple.location = 42
   snake.body = []
@@ -196,7 +196,7 @@ function checkForLoss(){
     userMsg.innerHTML = "Game Over. <br> To play again, click 'Reset' "
     snake.head.textContent = ""
   }else{
-    userMsg.innerHTML = "Press any of the 'WASD' keys to begin. <br> Have fun!" 
+    userMsg.innerHTML = "Press any of the 'WASD' keys to begin as well as change direction. <br> Have fun!" 
   }
 }
 
