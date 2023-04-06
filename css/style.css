@@ -65,6 +65,7 @@ button:hover {
 
 h1 {
   font-family: 'Shrek', 'JLR Star Shrek', arial;
+  margin: 0px;
   font-size: 50px;
   color: rgb(146, 192, 6);
 }

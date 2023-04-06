@@ -16,12 +16,12 @@ Create a themed version of the mobile game *Snake* made popular by *Nokia*.
 * Collect as many flowers as you can.
 * The flowers will be added to your body.
 * The game is over if:
-    * Your head interects the wall.
+    * Your head intersects the wall.
     * Your head intersects any portion of the flowers you have retrieved.
 * If you retrieve over 10 flowers, you save *Shrek*.
 ## Click [here](https://snake-blue-flower-red-thorns-theme.netlify.app/) to play the game.
 ## Motivation:
-I played snake as a child. I find it reminiscent of a simpler time in my life filled with joy. The movie *Shrek* shares a similar place in my heart and so, the two seemed a perfect match. It was a pleasure getting to use my newly aquired skills in software engineering to share some of that nostalgia with you.
+I played snake as a child. I find it reminiscent of a simpler time in my life filled with joy. The movie *Shrek* shares a similar place in my heart and so, the two seemed a perfect match. It was a pleasure getting to use my newly acquired skills in software engineering to share some of that nostalgia with you.
 ## Credits:
 * [Background Image](https://disneyfanon.fandom.com/wiki/Shrek%27s_Swamp)
 * Fonts
@@ -30,7 +30,7 @@ I played snake as a child. I find it reminiscent of a simpler time in my life fi
   * [Google Fonts](https://fonts.google.com/)
 * [Ashlan](https://github.com/ashfilbrun) for helping with theme conception
 * [Kelsea](https://github.com/kmhdesign123) for helping with design work
-* [Andy](https://github.com/andrewmorrisondev/snake) for panting seeds and continual moral support
+* [Andy](https://github.com/andrewmorrisondev/snake) for planting seeds and continual moral support
 ## Technologies:
 * JavaScript
 * HTML
@@ -42,8 +42,8 @@ I played snake as a child. I find it reminiscent of a simpler time in my life fi
 * Scoreboard
 * Leaderboard and the ability to save the user's name and associated score
 * Donkey's likeness instead of a unicorn
-* A blue flower with red thorns instead of pink tulip
-* Slightly darkened version of the blue flower with red thorns instead of Fs to symbolize the caputring of a flower
+* A blue flower with red thorns instead of a pink tulip
+* Slightly darkened version of the blue flower with red thorns instead of Fs to symbolize the capturing of a flower
 * Audio which corresponds to user interaction
-* Animations which correspond to user interaction
+* Animation which corresponds to user interaction
 ## Click [here](https://snake-blue-flower-red-thorns-theme.netlify.app/). 
