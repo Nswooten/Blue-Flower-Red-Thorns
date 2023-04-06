@@ -1,6 +1,4 @@
-console.log("sanity check")
 
-/*-------------------------------- Constants --------------------------------*/
 const snake = {
   head: 18,
   body: [],
@@ -17,7 +15,6 @@ bWall: [132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143],
 tWall: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
 }
 
-/*---------------------------- Variables (state) ----------------------------*/
 
 let timer
 
@@ -32,8 +29,6 @@ let lose = false
 let currentDirection = null
 
 
-/*------------------------ Cached Element References ------------------------*/
-
 const keyboard = document.querySelector(".keyboard")
 
 const userMsg = document.getElementById("userMsg")
@@ -43,7 +38,7 @@ let boardSqs
 const resetBtnEl = document.getElementById("btn")
 
 const container = document.getElementById("board")
-/*----------------------------- Event Listeners -----------------------------*/
+
 
 document.addEventListener("keydown", function(event){
   moveHead(event.key)
@@ -65,8 +60,6 @@ function creatSqrs(){
     container.appendChild(square)
   }
 }
-
-
 
 function init(){
   clearInterval(timer)
@@ -152,8 +145,6 @@ function moveHead(key){
     checkForWall(12)
     start(12)
     dealWithSnakeBody(12)
-    //boardSqs[index] = (boardSqs[index].id.replace("sq", ""))) + 12 
-    //need to shift the boardSqs[] +12
   }else if(key.toLowerCase() === "d" && currentDirection !== "a" && currentDirection !== "d" && lose === false){
     clearInterval(timer)
     currentDirection = "d"
@@ -199,7 +190,10 @@ function checkForBody(){
 }
 
 function checkForLoss(){
-  if (lose === true){
+  if (snake.body.length > 20 && lose === true){
+    userMsg.innerHTML = "You saved Shrek! <br> To play again, click 'Reset' "
+    snake.head.textContent = ""
+  }else if(lose === true){
     userMsg.innerHTML = "Game Over. <br> To play again, click 'Reset' "
     snake.head.textContent = ""
   }else{
