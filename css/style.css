@@ -1,8 +1,8 @@
 /* font-family: 'Amatic SC', cursive;
 font-family: 'Delicious Handrawn', cursive; */
+/* https://disneyfanon.fandom.com/wiki/Shrek%27s_Swamp */
 body {
 background-image: url("../images/swamp.png"); 
-/* https://disneyfanon.fandom.com/wiki/Shrek%27s_Swamp */
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-size: cover;
@@ -16,7 +16,7 @@ justify-content: center;
 align-items: center;
 margin: auto;
 padding: auto;
-gap: 30px;
+gap: 10px;
 
 }
 
@@ -33,20 +33,10 @@ section.board {
   justify-content: center;
   padding: auto;
   margin: auto;
-  font-size: 75%;
   opacity: 1;
   
 }
 
-section{
-  /* border: 10px solid;
-  border-color: black;
-  background-color: rgba(0, 0, 0, .1);
-  font-size: 3vmin;
-  text-align: center;
-  vertical-align: middle; */
-  /* box-shadow:  6px 6px 6px  rgba(0, 0, 0, 1); */
-}
 div {
   border: 1px solid;
   border-color: black;
@@ -70,19 +60,27 @@ button {
   align-content: center;
   text-align: center;
   opacity: .6;
-  /* flex-basis auto; */
 } 
+
 button:hover {
 box-shadow:  6px 6px 6px rgba(0, 0, 0, 1.0);
 opacity: 1;
 }
+
 h1 {
-font-family: 'JLR Star Shrek';
+font-family: 'Shrek', 'JLR Star Shrek', arial;
+font-size: 50px;
 color: rgb(146, 192, 6);
-font-size: 100px;
 }
+
 h2 {
   font-family: 'Delicious Handrawn', cursive;
-  font-size: 100%;
-  padding-top: 0px;
+  font-size: 20px;
+  gap: 0px;
+}
+
+span {
+  font-family: 'Delicious Handrawn', cursive;
+  font-size: 15px;
+  
 }

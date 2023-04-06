@@ -20,10 +20,15 @@ tWall: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
 /*---------------------------- Variables (state) ----------------------------*/
 
 let timer
+
 let boardSqsArray = []
+
 let keyToNumber = null
+
 let win = true
+
 let lose = false
+
 let currentDirection = null
 
 
@@ -40,16 +45,17 @@ const resetBtnEl = document.getElementById("btn")
 const container = document.getElementById("board")
 /*----------------------------- Event Listeners -----------------------------*/
 
-// keyboard.addEventListener("keydown", moveHead)
-document.addEventListener("keydown", (event)=>{
+document.addEventListener("keydown", function(event){
   moveHead(event.key)
 })
 
 resetBtnEl.addEventListener("click", init)
 
+creatSqrs()
+boardSqs = document.querySelectorAll(".sqr")
+
 /*-------------------------------- Functions --------------------------------*/
-{/* <section class="board">
-		<div class="sqr" id="sq0"></div> */}
+
 
 function creatSqrs(){
   for (let i=0; i<= 143; i += 1){
@@ -59,8 +65,9 @@ function creatSqrs(){
     container.appendChild(square)
   }
 }
-creatSqrs()
-boardSqs = document.querySelectorAll(".sqr") 
+
+
+
 function init(){
   clearInterval(timer)
   snake.head = 65
