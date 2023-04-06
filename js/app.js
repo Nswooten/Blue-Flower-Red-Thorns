@@ -9,10 +9,10 @@ const apple = {
 }
 
 const walls = {
-rWall: [11, 23, 35, 47, 59, 71, 83, 95, 107, 119, 131, 143],
-lWall: [0, 12, 24, 36, 48, 60, 72, 84, 96, 108, 120, 132],
-bWall: [132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143],
-tWall: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+  rWall: [11, 23, 35, 47, 59, 71, 83, 95, 107, 119, 131, 143],
+  lWall: [0, 12, 24, 36, 48, 60, 72, 84, 96, 108, 120, 132],
+  bWall: [132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143],
+  tWall: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
 }
 
 
@@ -20,9 +20,7 @@ let timer
 
 let boardSqsArray = []
 
-let keyToNumber = null
 
-let win = true
 
 let lose = false
 
@@ -33,24 +31,18 @@ const keyboard = document.querySelector(".keyboard")
 
 const userMsg = document.getElementById("userMsg")
 
-let boardSqs
-
 const resetBtnEl = document.getElementById("btn")
 
 const container = document.getElementById("board")
 
+creatSqrs()
+let boardSqs = document.querySelectorAll(".sqr")
 
 document.addEventListener("keydown", function(event){
   moveHead(event.key)
 })
 
 resetBtnEl.addEventListener("click", init)
-
-creatSqrs()
-boardSqs = document.querySelectorAll(".sqr")
-
-/*-------------------------------- Functions --------------------------------*/
-
 
 function creatSqrs(){
   for (let i=0; i<= 143; i += 1){
@@ -165,6 +157,7 @@ function moveHead(key){
   updateBoard()
   checkForLoss()
 }
+
 function checkForWall(direction){
   if(walls.bWall.includes(snake.head - 12) && direction === 12){
     clearInterval(timer)
@@ -181,6 +174,7 @@ function checkForWall(direction){
   }
   checkForLoss()
 }
+
 function checkForBody(){
   if(snake.body.includes(snake.head)){
     clearInterval(timer)
@@ -190,7 +184,7 @@ function checkForBody(){
 }
 
 function checkForLoss(){
-  if (snake.body.length > 20 && lose === true){
+  if (snake.body.length > 10 && lose === true){
     userMsg.innerHTML = "You saved Shrek! <br> To play again, click 'Reset'. "
     snake.head.textContent = ""
   }else if(lose === true){

@@ -11,13 +11,14 @@ Create a themed version of the mobile game *Snake* made popular by *Nokia*.
 * Press 'D' on the keyboard to move right.
 * Press 'A' on the keyboard to move left.
 * Press 'S' on the keyboard to move down.
+* Click the 'Reset' button on the page to start a new game.
 ## Game Mechanics:
 * Collect as many flowers as you can.
 * The flowers will be added to your body.
 * The game is over if:
     * Your head interects the wall.
-    * Your head intersects any portion of your body.
-* If you retrieve over 20 flowers, you save *Shrek*.
+    * Your head intersects any portion of the flowers you have retrieved.
+* If you retrieve over 10 flowers, you save *Shrek*.
 ## Click [here](https://snake-blue-flower-red-thorns-theme.netlify.app/) to play the game.
 ## Motivation:
 I played snake as a child. I find it reminiscent of a simpler time in my life filled with joy. The movie *Shrek* shares a similar place in my heart and so, the two seemed a perfect match. It was a pleasure getting to use my newly aquired skills in software engineering to share some of that nostalgia with you.
