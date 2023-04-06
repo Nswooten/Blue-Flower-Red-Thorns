@@ -79,7 +79,7 @@ function updateBoard(){
   }else if(index === apple.location){
     sqr.textContent = "🌷"
   }else if(snake.body.includes(index)){
-    sqr.textContent = "o"
+    sqr.textContent = "F"
   }else{
   sqr.textContent = ""
   }
@@ -191,10 +191,10 @@ function checkForBody(){
 
 function checkForLoss(){
   if (snake.body.length > 20 && lose === true){
-    userMsg.innerHTML = "You saved Shrek! <br> To play again, click 'Reset' "
+    userMsg.innerHTML = "You saved Shrek! <br> To play again, click 'Reset'. "
     snake.head.textContent = ""
   }else if(lose === true){
-    userMsg.innerHTML = "Game Over. <br> To play again, click 'Reset' "
+    userMsg.innerHTML = "Game Over. <br> To play again, click 'Reset'. "
     snake.head.textContent = ""
   }else{
     userMsg.innerHTML = "Press any of the 'WASD' keys to begin as well as change direction. <br> Have fun!" 
