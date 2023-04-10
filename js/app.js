@@ -20,8 +20,6 @@ let timer
 
 let boardSqsArray = []
 
-
-
 let lose = false
 
 let currentDirection = null
